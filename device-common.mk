@@ -114,9 +114,10 @@ SOONG_CONFIG_NAMESPACES += ufsbsg
 SOONG_CONFIG_ufsbsg += ufsframework
 SOONG_CONFIG_ufsbsg_ufsframework := bsg
 
+# OEM otacerts
 PRODUCT_EXTRA_RECOVERY_KEYS += \
-    $(COMMON_PATH)/security/local_OTA \
-    $(COMMON_PATH)/security/special_OTA
+    $(COMMON_PATH)/security/otacert
+
 
 # System AVB
 BOARD_AVB_VBMETA_SYSTEM := system
