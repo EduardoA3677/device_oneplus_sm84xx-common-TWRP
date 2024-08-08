@@ -62,6 +62,8 @@ on fs
     # Set fscklog permission
     chown root system /dev/fscklogs/log
     chmod 0770 /dev/fscklogs/log
+    mkdir /mnt/vendor/persist
+    mount ext4 /dev/block/bootdevice/by-name/persist /mnt/vendor/persist ro
     # Mount firmware
     mkdir /firmware
     mount vfat /dev/block/bootdevice/by-name/modem${ro.boot.slot_suffix} /firmware ro context=u:object_r:firmware_file:s0
@@ -91,6 +93,10 @@ on property:twrp.decrypt.done=true
     setprop ro.separate.soft ${ro.boot.prjname}
 
 on boot
+    # Load ADSP firmware for PMIC
+    wait /sys/kernel/boot_adsp/boot
+    write /sys/kernel/boot_adsp/boot 1
+    wait /sys/class/power_supply/battery
     start health-hal-2-1
     start vendor.qti.vibrator
 
