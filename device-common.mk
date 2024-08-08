@@ -31,9 +31,9 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
 
 # Platform
-QCOM_BOARD_PLATFORMS += $(PRODUCT_PLATFORM)
-TARGET_BOARD_PLATFORM := $(PRODUCT_PLATFORM)
-TARGET_BOOTLOADER_BOARD_NAME := $(TARGET_BOARD_PLATFORM)
+QCOM_BOARD_PLATFORMS += taro
+TARGET_BOARD_PLATFORM :=taro
+TARGET_BOOTLOADER_BOARD_NAME := taro
 
 BUILD_BROKEN_DUP_RULES := true
 
@@ -88,6 +88,8 @@ PRODUCT_SHIPPING_API_LEVEL := 31
 
 #Support to compile recovery without msm headers
 TARGET_HAS_GENERIC_KERNEL_HEADERS := true
+
+TARGET_ENFORCE_AB_OTA_PARTITION_LIST := true
 
 # Dynamic partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
