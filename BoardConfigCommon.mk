@@ -109,9 +109,9 @@ TARGET_RECOVERY_DEVICE_MODULES += \
     libhidlmemory \
     libion \
     libnetutils \
+    libxml2 \
     vendor.display.config@1.0 \
-    vendor.display.config@2.0 \
-    libdebuggerd_client
+    vendor.display.config@2.0
 TARGET_RECOVERY_FSTAB := $(COMMON_PATH)/recovery.fstab
 
 # Use mke2fs to create ext4 images
@@ -123,6 +123,7 @@ BOARD_AVB_RECOVERY_KEY_PATH := external/avb/test/data/testkey_rsa4096.pem
 BOARD_AVB_RECOVERY_ALGORITHM := SHA256_RSA4096
 BOARD_AVB_RECOVERY_ROLLBACK_INDEX := 1
 BOARD_AVB_RECOVERY_ROLLBACK_INDEX_LOCATION := 1
+BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 3
 
 # Encryption
 BOARD_USES_METADATA_PARTITION := true
@@ -140,7 +141,7 @@ TARGET_VENDOR_PROP += $(COMMON_PATH)/vendor.prop
 TARGET_RECOVERY_QCOM_RTC_FIX := true
 TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
 TW_THEME := portrait_hdpi
-TW_CUSTOM_CPU_TEMP_PATH := "/sys/devices/virtual/thermal/thermal_zone45/temp"
+TW_CUSTOM_CPU_TEMP_PATH := "/sys/devices/virtual/thermal/thermal_zone39/temp"
 TW_BRIGHTNESS_PATH := "/sys/devices/platform/soc/ae00000.qcom,mdss_mdp/backlight/panel0-backlight/brightness"
 TW_STATUS_ICONS_ALIGN := center
 #TW_CUSTOM_CPU_POS := "50"
@@ -156,10 +157,12 @@ TW_EXTRA_LANGUAGES := true
 TW_INCLUDE_CRYPTO := true
 TW_NO_EXFAT_FUSE := true
 TW_INCLUDE_RESETPROP := true
+TW_INCLUDE_FASTBOOTD := true
 TW_USE_SERIALNO_PROPERTY_FOR_DEVICE_ID := true
 TW_OVERRIDE_SYSTEM_PROPS := \
     "ro.build.product;ro.build.fingerprint=ro.vendor.build.fingerprint;ro.build.version.incremental"
 TW_OVERRIDE_PROPS_ADDITIONAL_PARTITIONS := vendor
+TW_USE_FSCRYPT_POLICY := 2
 RECOVERY_LIBRARY_SOURCE_FILES += \
     $(TARGET_OUT_SHARED_LIBRARIES)/android.hidl.allocator@1.0.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/android.hidl.memory@1.0.so \
@@ -168,7 +171,7 @@ RECOVERY_LIBRARY_SOURCE_FILES += \
     $(TARGET_OUT_SHARED_LIBRARIES)/libhidlmemory.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/libion.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/libnetutils.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libdebuggerd_client.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libxml2.so \
     $(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/vendor.display.config@1.0.so \
     $(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/vendor.display.config@2.0.so
 

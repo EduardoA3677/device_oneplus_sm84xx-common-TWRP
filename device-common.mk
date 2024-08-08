@@ -43,7 +43,7 @@ RELAX_USES_LIBRARY_CHECK := true
 AB_OTA_UPDATER := true
 
 # VNDK
-PRODUCT_TARGET_VNDK_VERSION := 32
+PRODUCT_TARGET_VNDK_VERSION := 33
 
 # Virtual A/B
 $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
@@ -116,7 +116,10 @@ SOONG_CONFIG_ufsbsg_ufsframework := bsg
 
 # OEM otacerts
 PRODUCT_EXTRA_RECOVERY_KEYS += \
-    $(COMMON_PATH)/security/otacert
+    $(COMMON_PATH)/security/local_OTA \
+    $(COMMON_PATH)/security/special_OTA \
+    $(COMMON_PATH)/security/testkey \
+    $(COMMON_PATH)/security/lineage
 
 
 # System AVB
