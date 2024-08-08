@@ -31,9 +31,9 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
 
 # Platform
-QCOM_BOARD_PLATFORMS += taro
-TARGET_BOARD_PLATFORM :=taro
-TARGET_BOOTLOADER_BOARD_NAME := taro
+QCOM_BOARD_PLATFORMS += $(PRODUCT_PLATFORM)
+TARGET_BOARD_PLATFORM := $(PRODUCT_PLATFORM)
+TARGET_BOOTLOADER_BOARD_NAME := $(TARGET_BOARD_PLATFORM)
 
 BUILD_BROKEN_DUP_RULES := true
 
@@ -89,8 +89,6 @@ PRODUCT_SHIPPING_API_LEVEL := 31
 #Support to compile recovery without msm headers
 TARGET_HAS_GENERIC_KERNEL_HEADERS := true
 
-TARGET_ENFORCE_AB_OTA_PARTITION_LIST := true
-
 # Dynamic partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
@@ -120,9 +118,7 @@ SOONG_CONFIG_ufsbsg_ufsframework := bsg
 PRODUCT_EXTRA_RECOVERY_KEYS += \
     $(COMMON_PATH)/security/local_OTA \
     $(COMMON_PATH)/security/special_OTA \
-    $(COMMON_PATH)/security/testkey \
     $(COMMON_PATH)/security/lineage
-
 
 # System AVB
 BOARD_AVB_VBMETA_SYSTEM := system
